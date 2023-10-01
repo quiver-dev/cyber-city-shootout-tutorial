@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg5tupbob1wj1"]
+
+[ext_resource type="PackedScene" uid="uid://t5in1l0yd2q6" path="res://assets/models/walls.glb" id="1_d0xpw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ma0g3"]
+sky_top_color = Color(0.294118, 0.4, 0.643137, 1)
+sky_horizon_color = Color(0.623529, 0.64225, 0.694034, 1)
+ground_horizon_color = Color(0.623529, 0.64225, 0.694034, 1)
+
+[sub_resource type="Sky" id="Sky_rhp2y"]
+sky_material = SubResource("ProceduralSkyMaterial_ma0g3")
+
+[sub_resource type="Environment" id="Environment_xju33"]
+background_mode = 2
+sky = SubResource("Sky_rhp2y")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xju33")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="walls" parent="." instance=ExtResource("1_d0xpw")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3, 2.08165e-12)
+current = true
