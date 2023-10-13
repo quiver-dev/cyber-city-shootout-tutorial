@@ -11,8 +11,9 @@ ground_horizon_color = Color(0.623529, 0.64225, 0.694034, 1)
 sky_material = SubResource("ProceduralSkyMaterial_ma0g3")
 
 [sub_resource type="Environment" id="Environment_xju33"]
-background_mode = 2
 sky = SubResource("Sky_rhp2y")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
 glow_enabled = true
 
@@ -25,10 +26,6 @@ points = PackedVector3Array(-0.5, -0.5, 0, -0.497651, -0.5, -0.0490407, -0.49246
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xju33")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3, 2.08165e-12)
