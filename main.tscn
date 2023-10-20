@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg5tupbob1wj1"]
+[gd_scene load_steps=9 format=3 uid="uid://dg5tupbob1wj1"]
 
 [ext_resource type="PackedScene" uid="uid://of51mbxxk5fy" path="res://environment/walls.tscn" id="1_fa23g"]
+[ext_resource type="Script" path="res://main.gd" id="1_kqp3f"]
 [ext_resource type="Script" path="res://actors/actor.gd" id="1_qpajs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ma0g3"]
@@ -23,24 +24,27 @@ glow_enabled = true
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_326p3"]
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_kqp3f")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xju33")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3, 4)
-current = true
-
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.2, 2.08165e-12)
 script = ExtResource("1_qpajs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2, 2.08165e-12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_r6t5l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2, 2.08165e-12)
 shape = SubResource("CapsuleShape3D_326p3")
+
+[node name="Pivot" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.6, 2.08165e-12)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+current = true
 
 [node name="Walls" parent="." instance=ExtResource("1_fa23g")]

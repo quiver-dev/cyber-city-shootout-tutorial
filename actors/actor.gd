@@ -5,6 +5,9 @@ extends CharacterBody3D
 @export var jump_force: float = 5.0
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var mouse_sensitivity: float = 0.002
+
+@onready var pivot = $Pivot
 
 
 func _physics_process(delta: float) -> void:
@@ -25,3 +28,11 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, slowdown_speed)
 
 	move_and_slide()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var mouse_change = -event.relative
+		rotate_y(mouse_change.x * mouse_sensitivity)
+		pivot.rotate_x(mouse_change.y * mouse_sensitivity)
+		pivot.rotation.x = clampf(pivot.rotation.x, -1.2, 1.2)
