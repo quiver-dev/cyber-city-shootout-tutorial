@@ -1,21 +1,32 @@
-[gd_scene load_steps=9 format=3 uid="uid://dg5tupbob1wj1"]
+[gd_scene load_steps=12 format=3 uid="uid://dg5tupbob1wj1"]
 
 [ext_resource type="PackedScene" uid="uid://of51mbxxk5fy" path="res://environment/walls.tscn" id="1_fa23g"]
 [ext_resource type="Script" path="res://main.gd" id="1_kqp3f"]
 [ext_resource type="Script" path="res://actors/actor.gd" id="1_qpajs"]
+[ext_resource type="PackedScene" uid="uid://dloul6gy17sq" path="res://weapons/weapon_manager.tscn" id="3_frrhr"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ma0g3"]
-sky_top_color = Color(0.294118, 0.4, 0.643137, 1)
-sky_horizon_color = Color(0.623529, 0.64225, 0.694034, 1)
-ground_horizon_color = Color(0.623529, 0.64225, 0.694034, 1)
+[sub_resource type="Gradient" id="Gradient_uay8m"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_njms4"]
+gradient = SubResource("Gradient_uay8m")
+width = 1
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_psmt3"]
+panorama = SubResource("GradientTexture1D_njms4")
 
 [sub_resource type="Sky" id="Sky_rhp2y"]
-sky_material = SubResource("ProceduralSkyMaterial_ma0g3")
+sky_material = SubResource("PanoramaSkyMaterial_psmt3")
 
 [sub_resource type="Environment" id="Environment_xju33"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.2
 sky = SubResource("Sky_rhp2y")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.8
 tonemap_mode = 2
 glow_enabled = true
 
@@ -34,7 +45,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.2, 2.08165e-12
 script = ExtResource("1_qpajs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_r6t5l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -44,7 +54,9 @@ shape = SubResource("CapsuleShape3D_326p3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.6, 2.08165e-12)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Pivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 current = true
+
+[node name="WeaponManager" parent="Player/Pivot/Camera3D" instance=ExtResource("3_frrhr")]
+transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 2.08165e-12, -0.7, -0.9)
 
 [node name="Walls" parent="." instance=ExtResource("1_fa23g")]
