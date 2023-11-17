@@ -59,4 +59,8 @@ current = true
 [node name="WeaponManager" parent="Player/Pivot/Camera3D" instance=ExtResource("3_frrhr")]
 transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 2.08165e-12, -0.7, -0.9)
 
+[node name="AimRaycast" type="RayCast3D" parent="Player/Pivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -0.6)
+target_position = Vector3(2.08165e-12, 2.08165e-12, -50)
+
 [node name="Walls" parent="." instance=ExtResource("1_fa23g")]

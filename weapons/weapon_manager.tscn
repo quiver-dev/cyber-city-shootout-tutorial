@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://weapons/weapon_manager.gd" id="1_0qppq"]
 [ext_resource type="PackedScene" uid="uid://cddvpdlbmdsl2" path="res://assets/models/arm_rig.glb" id="1_24nos"]
-[ext_resource type="PackedScene" uid="uid://ce2li71m57x30" path="res://assets/models/pistol_weapon.glb" id="2_r405h"]
+[ext_resource type="PackedScene" uid="uid://cdadae8jni6s7" path="res://weapons/pistol.tscn" id="3_6m73o"]
 
 [node name="WeaponManager" type="Node3D"]
 script = ExtResource("1_0qppq")
@@ -60,11 +60,11 @@ bones/35/rotation = Quaternion(0.273097, -0.162773, 0.353791, 0.879634)
 bones/36/rotation = Quaternion(0.142454, 0.040238, 0.459348, 0.875835)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="arm_rig/Arms/Skeleton3D" index="2"]
-transform = Transform3D(0.791669, -0.30936, 0.526836, 0.577354, 0.0968149, -0.810733, 0.199803, 0.946004, 0.255256, -0.356953, 0.0410496, -0.31853)
+transform = Transform3D(0.79167, -0.309361, 0.526835, 0.577354, 0.0968159, -0.810734, 0.199803, 0.946003, 0.255257, -0.356953, 0.0410503, -0.31853)
 bone_name = "hand.L"
 bone_idx = 3
 
-[node name="pistol_weapon" parent="arm_rig/Arms/Skeleton3D/BoneAttachment3D" instance=ExtResource("2_r405h")]
-transform = Transform3D(0.79167, 0.577354, 0.199803, -0.30936, 0.0968148, 0.946004, 0.526836, -0.810733, 0.255256, 0.322532, 0.18693, 0.302643)
+[node name="Pistol" parent="arm_rig/Arms/Skeleton3D/BoneAttachment3D" instance=ExtResource("3_6m73o")]
+transform = Transform3D(0.791669, 0.577354, 0.199803, -0.30936, 0.0968149, 0.946004, 0.526836, -0.810733, 0.255256, 0.322532, 0.18693, 0.302643)
 
 [editable path="arm_rig"]

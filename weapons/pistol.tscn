@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdadae8jni6s7"]
+
+[ext_resource type="PackedScene" uid="uid://b7jntr8lggcbx" path="res://weapons/weapon.tscn" id="1_60ibk"]
+[ext_resource type="PackedScene" uid="uid://ce2li71m57x30" path="res://assets/models/pistol_weapon.glb" id="2_h1ej4"]
+
+[node name="Pistol" instance=ExtResource("1_60ibk")]
+
+[node name="pistol_weapon" parent="Model" index="0" instance=ExtResource("2_h1ej4")]
