@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://of51mbxxk5fy" path="res://environment/walls.tscn" id="1_fa23g"]
 [ext_resource type="Script" path="res://main.gd" id="1_kqp3f"]
-[ext_resource type="Script" path="res://actors/actor.gd" id="1_qpajs"]
+[ext_resource type="Script" path="res://actors/player.gd" id="2_us4dt"]
 [ext_resource type="PackedScene" uid="uid://dloul6gy17sq" path="res://weapons/weapon_manager.tscn" id="3_frrhr"]
 
 [sub_resource type="Gradient" id="Gradient_uay8m"]
@@ -42,7 +42,7 @@ environment = SubResource("Environment_xju33")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.2, 2.08165e-12)
-script = ExtResource("1_qpajs")
+script = ExtResource("2_us4dt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_r6t5l")
