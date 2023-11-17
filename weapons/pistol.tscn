@@ -6,3 +6,6 @@
 [node name="Pistol" instance=ExtResource("1_60ibk")]
 
 [node name="pistol_weapon" parent="Model" index="0" instance=ExtResource("2_h1ej4")]
+
+[node name="Muzzle" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.4, 0.85)

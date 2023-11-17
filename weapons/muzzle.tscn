@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1yx2gjexw7yw"]
+
+[ext_resource type="Script" path="res://weapons/muzzle.gd" id="1_1747x"]
+[ext_resource type="Texture2D" uid="uid://bd51g54gpa5p1" path="res://assets/sprites/muzzle_flash_1.png" id="1_w7wsb"]
+
+[node name="Muzzle" type="Marker3D"]
+script = ExtResource("1_1747x")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+texture = ExtResource("1_w7wsb")
