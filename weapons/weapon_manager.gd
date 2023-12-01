@@ -1,4 +1,5 @@
 extends Node3D
+class_name WeaponManager
 
 
 signal weapon_fired
