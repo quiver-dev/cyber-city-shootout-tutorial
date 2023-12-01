@@ -1,8 +1,11 @@
 extends Node3D
 
 
+signal weapon_fired
+
 var aim_raycast: RayCast3D = null
 
+@onready var default_position = position
 @onready var pistol = $arm_rig/Arms/Skeleton3D/BoneAttachment3D/Pistol
 @onready var animation_player = $arm_rig/AnimationPlayer
 
@@ -16,6 +19,19 @@ func set_aim_raycast(raycast: RayCast3D):
 	pistol.aim_raycast = raycast
 
 
+func kick_weapon():
+	var t = create_tween()
+	t.set_parallel(true)
+	t.tween_property(self, "rotation:x", deg_to_rad(-5), 0.05).as_relative()
+	t.tween_property(self, "position:z", 0.15, 0.05).as_relative()
+	t.set_parallel(false)
+
+	t.tween_property(self, "rotation:x", 0.0, 0.05)
+	t.tween_property(self, "position:z", default_position.z, 0.05)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
 		pistol.shoot()
+		kick_weapon()
+		weapon_fired.emit()
