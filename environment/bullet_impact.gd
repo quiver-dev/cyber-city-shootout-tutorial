@@ -8,5 +8,7 @@ func initialize(location: Vector3, direction: Vector3):
 	else:
 		look_at(global_position + direction)
 
+	$GPUParticles3D.emitting = true
+
 	var t = create_tween()
 	t.tween_callback(queue_free).set_delay(4.0)
