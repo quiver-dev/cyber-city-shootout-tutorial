@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://cchtb0wqw525f"]
+
+[ext_resource type="Texture2D" uid="uid://xbh7kwhm1dbf" path="res://assets/sprites/crosshair.png" id="1_6eden"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_734w3"]
+bg_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pod0r"]
+bg_color = Color(0.968627, 0.352941, 0.396078, 1)
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Crosshair" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_6eden")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 2
+
+[node name="BottomRow" type="HBoxContainer" parent="MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/Rows/BottomRow"]
+custom_minimum_size = Vector2(2.08165e-12, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_734w3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pod0r")
+value = 50.0
+show_percentage = false
+
+[node name="Control" type="Control" parent="MarginContainer/Rows/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 2
+
+[node name="AmmoArea" type="HBoxContainer" parent="MarginContainer/Rows/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+alignment = 2
+
+[node name="CurrentAmmo" type="Label" parent="MarginContainer/Rows/BottomRow/AmmoArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "12"
+
+[node name="Separator" type="Label" parent="MarginContainer/Rows/BottomRow/AmmoArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = " / "
+
+[node name="MaxAmmo" type="Label" parent="MarginContainer/Rows/BottomRow/AmmoArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "12"
