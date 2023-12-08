@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dg5tupbob1wj1"]
+[gd_scene load_steps=13 format=3 uid="uid://dg5tupbob1wj1"]
 
 [ext_resource type="PackedScene" uid="uid://of51mbxxk5fy" path="res://environment/walls.tscn" id="1_fa23g"]
 [ext_resource type="Script" path="res://main.gd" id="1_kqp3f"]
 [ext_resource type="Script" path="res://actors/player.gd" id="2_us4dt"]
 [ext_resource type="PackedScene" uid="uid://dloul6gy17sq" path="res://weapons/weapon_manager.tscn" id="3_frrhr"]
 [ext_resource type="Script" path="res://environment/impact_container.gd" id="5_2ak7d"]
-[ext_resource type="PackedScene" uid="uid://n6atiy4vw68q" path="res://environment/bullet_impact.tscn" id="6_r68iv"]
 
 [sub_resource type="Gradient" id="Gradient_uay8m"]
 offsets = PackedFloat32Array(0)
@@ -69,6 +68,3 @@ target_position = Vector3(2.08165e-12, 2.08165e-12, -50)
 
 [node name="ImpactContainer" type="Node3D" parent="."]
 script = ExtResource("5_2ak7d")
-
-[node name="BulletImpact" parent="ImpactContainer" instance=ExtResource("6_r68iv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.878913, -18.4679)
