@@ -37,3 +37,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if gun_was_shot:
 			kick_weapon()
 			weapon_fired.emit()
+	if event.is_action_pressed("reload"):
+		var reload_started: bool = pistol.start_reload()
+		if reload_started:
+			animation_player.play("Gun1_Reload")
