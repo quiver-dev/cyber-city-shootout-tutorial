@@ -33,6 +33,7 @@ func kick_weapon():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
-		pistol.shoot()
-		kick_weapon()
-		weapon_fired.emit()
+		var gun_was_shot: bool = pistol.shoot()
+		if gun_was_shot:
+			kick_weapon()
+			weapon_fired.emit()
