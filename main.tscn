@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://dg5tupbob1wj1"]
+[gd_scene load_steps=17 format=3 uid="uid://dg5tupbob1wj1"]
 
 [ext_resource type="PackedScene" uid="uid://of51mbxxk5fy" path="res://environment/walls.tscn" id="1_fa23g"]
 [ext_resource type="Script" path="res://main.gd" id="1_kqp3f"]
 [ext_resource type="Script" path="res://actors/player.gd" id="2_us4dt"]
 [ext_resource type="PackedScene" uid="uid://dloul6gy17sq" path="res://weapons/weapon_manager.tscn" id="3_frrhr"]
 [ext_resource type="Script" path="res://environment/impact_container.gd" id="5_2ak7d"]
+[ext_resource type="PackedScene" uid="uid://bowv7w72psut8" path="res://actors/enemy.tscn" id="6_6lifp"]
 [ext_resource type="PackedScene" uid="uid://cchtb0wqw525f" path="res://ui/hud.tscn" id="6_emg8e"]
+[ext_resource type="Script" path="res://environment/enemy_container.gd" id="7_rvmds"]
 
 [sub_resource type="Gradient" id="Gradient_uay8m"]
 offsets = PackedFloat32Array(0)
@@ -36,6 +38,11 @@ glow_enabled = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_326p3"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_74y86"]
+vertices = PackedVector3Array(-17.0326, 0.5, 10.2174, -10.0326, 0.5, 17.2174, 9.9674, 0.5, 17.2174, 17.2174, 0.5, 9.9674, 17.2174, 0.5, -10.0326, 10.2174, 0.5, -17.0326, 10.2174, 0.5, -17.0326, -10.0326, 0.5, -17.0326, -17.0326, 0.5, -10.0326, -17.0326, 0.5, 10.2174, 9.9674, 0.5, 17.2174, 17.2174, 0.5, 9.9674)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 11), PackedInt32Array(9, 11, 10)]
+agent_radius = 1.25
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_kqp3f")
 
@@ -65,7 +72,16 @@ transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -0.6)
 target_position = Vector3(2.08165e-12, 2.08165e-12, -50)
 
-[node name="Walls" parent="." instance=ExtResource("1_fa23g")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_74y86")
+
+[node name="Walls" parent="NavigationRegion3D" instance=ExtResource("1_fa23g")]
+
+[node name="EnemyContainer" type="Node3D" parent="."]
+script = ExtResource("7_rvmds")
+
+[node name="Enemy" parent="EnemyContainer" instance=ExtResource("6_6lifp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.0867)
 
 [node name="ImpactContainer" type="Node3D" parent="."]
 script = ExtResource("5_2ak7d")
