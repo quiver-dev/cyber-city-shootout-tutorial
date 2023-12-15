@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bowv7w72psut8"]
+[gd_scene load_steps=28 format=3 uid="uid://bowv7w72psut8"]
 
 [ext_resource type="Script" path="res://actors/enemy.gd" id="1_1epra"]
 [ext_resource type="PackedScene" uid="uid://bw5cnn5e40ejh" path="res://assets/models/melee_enemy.glb" id="2_hpocx"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dfh7n"]
 radius = 0.55
 height = 1.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s1yw8"]
+size = Vector3(0.75, 0.75, 0.75)
 
 [sub_resource type="Animation" id="Animation_cgf53"]
 resource_name = "1tpose"
@@ -883,7 +886,7 @@ animation = &"attack_2"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_siy3o"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_mg5cf"]
-graph_offset = Vector2(-286, 1.33333)
+graph_offset = Vector2(-264, 3.33333)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_vkhm2")
 nodes/Animation/position = Vector2(-153.333, 133.333)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_siy3o")
@@ -927,9 +930,11 @@ states/idle/position = Vector2(395, 100.815)
 states/walking/node = SubResource("AnimationNodeAnimation_xrove")
 states/walking/position = Vector2(693, 116.667)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_im1k3"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_4h3ky"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_7hf4v"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_2yo4e"), "attack", "walking", SubResource("AnimationNodeStateMachineTransition_wdaut"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_rmovb"), "walking", "attack", SubResource("AnimationNodeStateMachineTransition_ifjtu")]
-graph_offset = Vector2(56, -18)
+graph_offset = Vector2(82, 46)
 
 [node name="Enemy" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_1epra")
 speed = 3.0
 
@@ -939,7 +944,6 @@ speed = 3.0
 
 [node name="Skeleton3D" parent="Model/melee_enemy/Enemy_2" index="1"]
 bones/0/rotation = Quaternion(-0.707107, -2.44987e-16, -2.44987e-16, 0.707107)
-bones/0/scale = Vector3(1, 1, 1)
 bones/1/rotation = Quaternion(0.18982, 6.57657e-17, 2.12182e-16, 0.981819)
 bones/2/rotation = Quaternion(-0.519644, -1.0185e-07, 6.19463e-08, 0.854383)
 bones/2/scale = Vector3(1, 1, 1)
@@ -960,6 +964,16 @@ bones/9/scale = Vector3(1, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.55, 2.08165e-12)
 shape = SubResource("CapsuleShape3D_dfh7n")
 
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.6, -1.1)
+shape = SubResource("BoxShape3D_s1yw8")
+disabled = true
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="NavTick" type="Timer" parent="."]
@@ -975,6 +989,7 @@ tree_root = SubResource("AnimationNodeStateMachine_ohi5v")
 anim_player = NodePath("../Model/melee_enemy/AnimationPlayer")
 parameters/attack/TimeScale/scale = 2.0
 
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="NavTick" to="." method="_on_nav_tick_timeout"]
 
 [editable path="Model/melee_enemy"]
