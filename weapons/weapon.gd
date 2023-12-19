@@ -4,6 +4,7 @@ extends Node3D
 signal bullet_impacted(location: Vector3, direction: Vector3)
 signal current_ammo_changed(new_ammo: int)
 
+@export var damage: int = 1
 @export var max_ammo := 12
 var current_ammo := 12
 
@@ -54,8 +55,10 @@ func shoot() -> bool:
 	muzzle.show_flash()
 
 	if aim_raycast != null and aim_raycast.is_colliding():
-		var hit = aim_raycast.get_collider()
-		if hit:
+		var hit_object = aim_raycast.get_collider()
+		if hit_object:
+			if hit_object.has_method("hit"):
+				hit_object.hit(damage)
 			var cp := aim_raycast.get_collision_point()
 			var cn := aim_raycast.get_collision_normal()
 			bullet_impacted.emit(cp, cn)

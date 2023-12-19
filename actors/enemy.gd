@@ -2,6 +2,7 @@ extends Actor
 
 
 @export var attack_radius := 1.5
+@export var damage: int = 1.0
 
 var player: Player
 var attack_time := 2.0
@@ -63,10 +64,15 @@ func set_hurtbox_disabled(disabled: bool):
 	hurtbox.set_deferred("disabled", disabled)
 
 
+func die():
+	queue_free()
+
+
 func _on_nav_tick_timeout() -> void:
 	if is_instance_valid(player):
 		nav.set_target_position(player.global_position)
 
 
 func _on_hurtbox_body_entered(body: Node3D) -> void:
-	print("player has been hit! ", body)
+	if is_instance_valid(body) and body.has_method("hit"):
+		body.hit(damage)

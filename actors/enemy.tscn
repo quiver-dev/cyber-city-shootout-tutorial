@@ -937,6 +937,7 @@ collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_1epra")
 speed = 3.0
+max_health = 3
 
 [node name="Model" type="Node3D" parent="."]
 
@@ -945,19 +946,22 @@ speed = 3.0
 [node name="Skeleton3D" parent="Model/melee_enemy/Enemy_2" index="1"]
 bones/0/rotation = Quaternion(-0.707107, -2.44987e-16, -2.44987e-16, 0.707107)
 bones/1/rotation = Quaternion(0.18982, 6.57657e-17, 2.12182e-16, 0.981819)
-bones/2/rotation = Quaternion(-0.519644, -1.0185e-07, 6.19463e-08, 0.854383)
+bones/2/rotation = Quaternion(-0.519643, -1.0185e-07, 6.19463e-08, 0.854383)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.350886, -0.127129, 0.702773, 0.605663)
+bones/3/position = Vector3(-0.468976, 0.431513, -0.236047)
+bones/3/rotation = Quaternion(-0.351431, -0.126851, 0.702848, 0.605319)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(-0.0139404, 0.0145699, -0.70418, 0.709735)
+bones/4/rotation = Quaternion(-0.0136633, 0.0143128, -0.703741, 0.710181)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-0.0300117, -7.3223e-09, 0.0254597, 0.999225)
+bones/5/rotation = Quaternion(-0.0300117, -3.81616e-08, 0.0254597, 0.999225)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.0509047, -1.41901e-07, -0.0431838, 0.997769)
-bones/7/rotation = Quaternion(0.0509047, -1.94231e-07, -0.0431838, 0.997769)
+bones/6/rotation = Quaternion(0.0509047, -1.60335e-07, -0.0431838, 0.997769)
+bones/7/rotation = Quaternion(0.0509047, -2.12433e-07, -0.0431838, 0.997769)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(-0.350886, 0.127129, -0.702773, 0.605663)
+bones/8/position = Vector3(0.468976, 0.431513, -0.236047)
+bones/8/rotation = Quaternion(-0.351431, 0.126851, -0.702848, 0.605319)
 bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(-0.0136633, -0.0143128, 0.703741, 0.710181)
 bones/9/scale = Vector3(1, 1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

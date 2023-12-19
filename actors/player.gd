@@ -40,6 +40,10 @@ func rotate_camera_vertical(rotation_amount: float):
 	pivot.rotation.x = clampf(pivot.rotation.x, -1.2, 1.2)
 
 
+func die():
+	print("player is dead!")
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and is_on_floor():
 		velocity.y = jump_force

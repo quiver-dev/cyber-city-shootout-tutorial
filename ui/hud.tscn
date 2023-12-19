@@ -53,6 +53,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="HealthBar" type="ProgressBar" parent="MarginContainer/Rows/BottomRow"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(2.08165e-12, 64)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -60,7 +61,7 @@ size_flags_vertical = 8
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_734w3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pod0r")
-value = 50.0
+value = 10.0
 show_percentage = false
 
 [node name="Control" type="Control" parent="MarginContainer/Rows/BottomRow"]
