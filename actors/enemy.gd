@@ -12,10 +12,11 @@ var is_attacking := false
 @onready var playback: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
 @onready var attack_time_scale: float = $AnimationTree.get("parameters/attack/TimeScale/scale")
 @onready var hurtbox = $Hurtbox/CollisionShape3D
+@onready var animation_player = $Model/melee_enemy/AnimationPlayer
 
 
 func _ready() -> void:
-	attack_time = $Model/melee_enemy/AnimationPlayer.get_animation("attack_2").length
+	attack_time = animation_player.get_animation("attack_2").length
 
 
 func _physics_process(delta: float) -> void:
@@ -65,7 +66,19 @@ func set_hurtbox_disabled(disabled: bool):
 
 
 func die():
-	queue_free()
+	set_physics_process(false)
+	player = null
+	collision_layer = 0
+	collision_mask = 0
+	set_hurtbox_disabled(true)
+
+	var death_length = animation_player.get_animation("defeat").length
+	var t = create_tween()
+	t.set_parallel(true)
+	t.tween_property(self, "global_position:y", -1.5, death_length * 0.9).as_relative()
+	t.tween_callback(queue_free).set_delay(death_length)
+	playback.travel("defeat")
+	super()
 
 
 func _on_nav_tick_timeout() -> void:

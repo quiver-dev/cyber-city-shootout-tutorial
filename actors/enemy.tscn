@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bowv7w72psut8"]
+[gd_scene load_steps=32 format=3 uid="uid://bowv7w72psut8"]
 
 [ext_resource type="Script" path="res://actors/enemy.gd" id="1_1epra"]
 [ext_resource type="PackedScene" uid="uid://bw5cnn5e40ejh" path="res://assets/models/melee_enemy.glb" id="2_hpocx"]
@@ -893,6 +893,9 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_siy3o")
 nodes/TimeScale/position = Vector2(80, 126.667)
 node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_furu7"]
+animation = &"defeat"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vqru2"]
 animation = &"idle"
 
@@ -922,15 +925,26 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ifjtu"]
 xfade_time = 0.2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1q2wy"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_stvvj"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0y5w5"]
+xfade_time = 0.2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ohi5v"]
 states/attack/node = SubResource("AnimationNodeBlendTree_mg5cf")
-states/attack/position = Vector2(515, 252)
+states/attack/position = Vector2(529.667, 268.667)
+states/defeat/node = SubResource("AnimationNodeAnimation_furu7")
+states/defeat/position = Vector2(817.667, 281.667)
 states/idle/node = SubResource("AnimationNodeAnimation_vqru2")
 states/idle/position = Vector2(395, 100.815)
 states/walking/node = SubResource("AnimationNodeAnimation_xrove")
 states/walking/position = Vector2(693, 116.667)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_im1k3"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_4h3ky"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_7hf4v"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_2yo4e"), "attack", "walking", SubResource("AnimationNodeStateMachineTransition_wdaut"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_rmovb"), "walking", "attack", SubResource("AnimationNodeStateMachineTransition_ifjtu")]
-graph_offset = Vector2(82, 46)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_im1k3"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_4h3ky"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_7hf4v"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_2yo4e"), "attack", "walking", SubResource("AnimationNodeStateMachineTransition_wdaut"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_rmovb"), "walking", "attack", SubResource("AnimationNodeStateMachineTransition_ifjtu"), "walking", "defeat", SubResource("AnimationNodeStateMachineTransition_1q2wy"), "attack", "defeat", SubResource("AnimationNodeStateMachineTransition_stvvj"), "idle", "defeat", SubResource("AnimationNodeStateMachineTransition_0y5w5")]
+graph_offset = Vector2(90, 50)
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 4
@@ -945,23 +959,22 @@ max_health = 3
 
 [node name="Skeleton3D" parent="Model/melee_enemy/Enemy_2" index="1"]
 bones/0/rotation = Quaternion(-0.707107, -2.44987e-16, -2.44987e-16, 0.707107)
-bones/1/rotation = Quaternion(0.18982, 6.57657e-17, 2.12182e-16, 0.981819)
-bones/2/rotation = Quaternion(-0.519643, -1.0185e-07, 6.19463e-08, 0.854383)
+bones/1/position = Vector3(4.65616e-16, -0.778754, 0.176372)
+bones/1/rotation = Quaternion(0.530892, 3.08622e-16, 1.59035e-16, 0.84744)
+bones/2/rotation = Quaternion(-0.414263, -1.08499e-07, 4.9384e-08, 0.910157)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/position = Vector3(-0.468976, 0.431513, -0.236047)
-bones/3/rotation = Quaternion(-0.351431, -0.126851, 0.702848, 0.605319)
+bones/3/rotation = Quaternion(-0.350886, -0.127129, 0.702773, 0.605663)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(-0.0136633, 0.0143128, -0.703741, 0.710181)
+bones/4/rotation = Quaternion(-0.0605192, -0.612328, -0.227347, 0.754788)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-0.0300117, -3.81616e-08, 0.0254597, 0.999225)
+bones/5/rotation = Quaternion(-0.0300117, -4.43452e-08, 0.0254597, 0.999225)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.0509047, -1.60335e-07, -0.0431838, 0.997769)
-bones/7/rotation = Quaternion(0.0509047, -2.12433e-07, -0.0431838, 0.997769)
+bones/6/rotation = Quaternion(0.0509047, -1.19588e-07, -0.0431838, 0.997769)
+bones/7/rotation = Quaternion(0.0509047, -1.93531e-07, -0.0431838, 0.997769)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/position = Vector3(0.468976, 0.431513, -0.236047)
-bones/8/rotation = Quaternion(-0.351431, 0.126851, -0.702848, 0.605319)
+bones/8/rotation = Quaternion(-0.362263, 0.163291, -0.72599, 0.561284)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.0136633, -0.0143128, 0.703741, 0.710181)
+bones/9/rotation = Quaternion(0.0174711, 0.646352, 0.240608, 0.7239)
 bones/9/scale = Vector3(1, 1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

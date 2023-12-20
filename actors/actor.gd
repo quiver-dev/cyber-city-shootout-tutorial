@@ -3,6 +3,7 @@ class_name Actor
 
 
 signal health_changed(new_health: int)
+signal died(actor: Actor)
 
 @export var speed: float = 5.0
 @export var jump_force: float = 5.0
@@ -39,4 +40,4 @@ func hit(damage: int):
 
 
 func die():
-	pass
+	died.emit(self)

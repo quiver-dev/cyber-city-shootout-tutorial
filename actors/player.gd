@@ -41,7 +41,7 @@ func rotate_camera_vertical(rotation_amount: float):
 
 
 func die():
-	print("player is dead!")
+	super()
 
 
 func _unhandled_input(event: InputEvent) -> void:
