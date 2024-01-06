@@ -73,3 +73,7 @@ reload={
 3d_physics/layer_1="environment"
 3d_physics/layer_2="player"
 3d_physics/layer_3="enemy"
+
+[rendering]
+
+global_illumination/gi/use_half_resolution=true

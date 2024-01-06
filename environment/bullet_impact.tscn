@@ -25,6 +25,8 @@ color = Color(2, 1.2, 0.6, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5xxl"]
 vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(2, 1.2, 0.6, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_l7t0b"]
 material = SubResource("StandardMaterial3D_x5xxl")
@@ -42,6 +44,7 @@ lower_fade = 1e-05
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 cast_shadow = 0
+gi_mode = 0
 emitting = false
 amount = 16
 lifetime = 0.2
